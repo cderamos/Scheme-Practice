@@ -93,18 +93,18 @@
          (else (recur (cdr newlist)))))))))
 
 
-;lambda example/non-lambda examples
+lambda example/non-lambda examples
 ;add 5 to every number in a list          
-;(map (lambda (x) (+ x 5)) (list 1 2 3 4)) ;<-- one use only
-;
-;(define (fives1 mylist)(+ mylist 5))
-;(map fives1 (list 1 2 3 4))
-;
-;(define (fives2 mylist)
-; (cond
-;   ((null? mylist) '())
-;   (else (append (list (+ 5 (car mylist))) (fives2 (cdr mylist))))))
-;   (fives2 '(1 2 3 4))
+(map (lambda (x) (+ x 5)) (list 1 2 3 4)) ;<-- one use only
+
+(define (fives1 mylist)(+ mylist 5))
+(map fives1 (list 1 2 3 4))
+
+(define (fives2 mylist)
+ (cond
+   ((null? mylist) '())
+   (else (append (list (+ 5 (car mylist))) (fives2 (cdr mylist))))))
+   (fives2 '(1 2 3 4))
 
 ;list version
 (define planetList '(("Geonosis" 200)("Kamino" 7000)("Rhen Var" 100) ("Kashyyyk" 2500) ("Naboo" 9700) ("Coruscant" 9800)))
@@ -200,18 +200,3 @@
 
 (removal "Luke" '(("Luke" 125) ("Iden" 25) ("Bossk" 55)))
 
-;(sums '(1 2 3)) --> 6
-(define (sums numlist)
-  (let ((most 1) (hold 1))
-  (cond
-    ((null? numlist) 0)
-    ((= 0 (car numlist)) 0)
-    ((= 1 (length numlist)) (car numlist))
-    (else (let recur ((newlist numlist))
-            (cond
-              ((null? newlist) most)
-              (else (cond
-                      ((>= (* (car newlist) most) most) (set! most (* (car newlist) most)) (set! hold (* (car newlist) most)) (recur (cdr newlist)))
-                      ((>= (* (car newlist) hold) most) (set! most (* (car newlist) hold)) (set! hold (* (car newlist) hold))( recur (cdr newlist)))
-                      ((<= (* (car newlist) most)) (set! hold (* (car newlist) most)) (recur (cdr newlist)))))))))))
-    
